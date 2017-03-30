@@ -3,7 +3,8 @@ var path = require('path');
 module.exports = {
     entry: {
         index: './src/index.ts',
-        instance: './src/instance.ts'
+        instance: './src/instance.ts',
+        syntax: './src/syntax.ts'
     },
     output: {
         path: path.resolve(__dirname, 'src'),

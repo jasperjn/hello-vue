@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="text">
+        <span>Message: {{msg}}</span>
+    </div>
+    <div id="text-2">
+        <span v-once>Message: {{msg}}</span>
+    </div>
+    <div id="rawHtml" v-html="rawHtml">
+    </div>
+    <div id="attr">
+        <div v-bind:id="dynamicId">
+            {{dynamicId}}
+        </div>
+    </div>
+    <div id="attr-2">
+        <button v-bind:disabled="someDynamicCondition">Button</button>
+    </div>
+    <div id="expressions">
+        {{number +1}}
+        {{ok ? 'YES': 'NO'}}
+        {{message.split('').reverse().join('')}}
+        <div v-bind:id="'list-' + id">
+            {{'list-' + id}}
+        </div>
+    </div>
+    <div id="directives">
+        <p v-if="seen">Now you see me</p>
+        <button v-on:click="seenToggle">{{seen? 'Hide' : 'Show'}}</button>
+    </div>
+    <div id="arguments">
+        <a v-bind:href="url">{{url}}</a>
+        <a v-on:click="doSomething">{{url}}</a>
+        <form action="/" v-on:submit="onSubmit">
+            <button>submit</button>
+        </form>
+        <form action="/" v-on:submit.prevent="onSubmit">
+            <button>submit prevented</button>
+        </form>
+    </div>
+    <div id="filters">
+        <p>{{message | capitalize}}</p>
+        <p>{{message | capitalize | reverse}}</p>
+        <p>{{message | slice(2)}}</p>
+        <div v-bind:id="rawId | formatId"></div>
+    </div>
+    <div id="shorthands">
+        <a v-bind:href="url">{{url}}</a>
+        <a :href="url">{{url}}</a>
+        <a v-on:click="doSomething" v-bind:href="url">{{url}}</a>
+        <a @click.prevent="doSomething" :href="url">{{url}}</a>
+    </div>
+    <script src="./syntax.bundle.js"></script>
+</body>
+</html>
