@@ -4,7 +4,8 @@ module.exports = {
     entry: {
         index: './src/index.ts',
         instance: './src/instance.ts',
-        syntax: './src/syntax.ts'
+        syntax: './src/syntax.ts',
+        computed: './src/computed.ts',
     },
     output: {
         path: path.resolve(__dirname, 'src'),

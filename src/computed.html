@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <p>Original message: "{{message}}"</p>
+        <p>Computed reversed message: "{{reversedMessage}}"</p>
+    </div>
+    <div id="computed-vs-methods">
+        <p>Original message: "{{message}}"</p>
+        <p>Computed reversed message: "{{reversedMessage}}"</p>
+        <p>Methods reversed message: "{{reversedMessageMethod()}}"</p>
+        <p>Computed reversed message(cached): "{{reversedMessage}}"</p>
+        <p>Methods reversed message(not cached): "{{reversedMessageMethod()}}"</p>
+    </div>
+    <div id="computed-vs-watched">
+        <div id="demo">{{fullName}}</div>
+        <div id="demo2">{{fullName}}</div>
+    </div>
+    <div id="computed-setter">
+        First name: {{firstName}} Last name: {{lastName}}
+        Full name: {{fullName}}
+    </div>
+    <div id="watch-example">
+        <p>
+            Ask a yes/no question:
+            <input type="text" v-model="question">
+        </p>
+        <p>{{answer}}</p>
+    </div>
+    <script src="./computed.bundle.js"></script>
+</body>
+</html>
