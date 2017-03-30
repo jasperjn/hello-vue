@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="classes">
+        <div :class="{active: isActive}">
+            {{isActive}}
+        </div>
+    </div>
+    <div id="classes-2">
+        <div class="static" :class="{active: isActive}">
+            {{isActive}}
+        </div>
+    </div>
+    <div id="class-object">
+        <div class="static" :class="classObject">
+            {{classObject}}
+        </div>
+    </div>
+    <div id="class-computed">
+        <div class="static" :class="classObject">
+            {{classObject}}
+        </div>
+    </div>
+    <div id="array-syntax" :class="[activeClass, errorClass]">
+        {{[activeClass, errorClass]}}
+    </div>
+    <div id="array-syntax-toggle" :class="[isActive ? activeClass: '', errorClass]">
+        {{[isActive ? activeClass: '', errorClass]}}
+    </div>
+    <div id="array-syntax-toggle2" :class="[{activeClass: isActive}, errorClass]">
+        {{[isActive ? activeClass: '', errorClass]}}
+    </div>
+    <div id="with-components">
+        <my-component class="baz boo" :class="{active: isActive}"></my-component>
+    </div>
+    <div id="inline-styles" :style="{color: activeColor, fontSize: fontSize + 'px'}">
+        text
+    </div>
+    <div id="inline-styles-object" :style="styleObject">
+        text
+    </div>
+    <div id="inline-styles-array-syntax" :style="[baseStyles, overridingStyles]">
+        text
+    </div>
+    <script src="./class-and-style.bundle.js"></script>
+</body>
+</html>
