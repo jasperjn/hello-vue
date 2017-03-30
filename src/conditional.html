@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="if-binding">
+        <h1 v-if="ok">Yes</h1>
+    </div>
+    <div id="if-else-binding">
+        <h1 v-if="ok">Yes</h1>
+        <h1 v-else>No</h1>
+    </div>
+    <div id="template">
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+        <template v-if="!ok">
+            <h1>Title 2</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+    <div id="else-binding">
+        <div v-if="Math.random() > 0.5">
+            Now you see me
+        </div>
+        <div v-else="Math.random() > 0.5">
+            Now you don't
+        </div>
+    </div>
+    <div id="elseif-binding">
+        <div v-if="type === 'A'">A</div>
+        <div v-else-if="type === 'B'">B</div>
+        <div v-else-if="type === 'C'">C</div>
+        <div v-else>Not A/B/C</div>
+    </div>
+    <div id="reusable-elements">
+        <div>
+            <template v-if="loginType === 'username'">
+                <label for="">Username</label>
+                <input type="text" placeholder="Enter your username" />
+            </template>
+            <template v-else>
+                <label for="">Email</label>
+                <input type="text" placeholder="Enter your email address" />
+            </template>
+        </div>
+        <button @click.prevent="toggleLoginType">Toggle login type</button>
+    </div>
+    <div id="reusable-elements-key">
+        <div>
+            <template v-if="loginType === 'username'">
+                <label for="">Username</label>
+                <input type="text" placeholder="Enter your username" key="username-input" />
+            </template>
+            <template v-else>
+                <label for="">Email</label>
+                <input type="text" placeholder="Enter your email address" key="email-input" />
+            </template>
+        </div>
+        <button @click.prevent="toggleLoginType">Toggle login type</button>
+    </div>
+    <div id="show">
+        <div v-show="ok">
+            Hello!
+        </div>
+        <div v-show="!ok">
+            World!
+        </div>
+    </div>
+    <script src="./conditional.bundle.js"></script>
+</body>
+</html>
