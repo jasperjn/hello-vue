@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { ComponentOptions } from 'vue';
 
 var MyComponent = Vue.extend({
 });
@@ -35,3 +35,44 @@ vm.$watch('a', function (newVal, oldVal) {
 });
 
 data.a = 4;
+
+// =============================================================================
+// Instance Lifecycle Hooks
+// https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks
+// =============================================================================
+
+var vm2 = new Vue({
+    el: '#instance-lifecycle-hooks',
+    data: {
+        a: 1
+    },
+    beforeCreate() {
+        console.log(`beforeCreated`);
+    },
+    created() {
+        console.log(`created`);
+        console.log(`a is: ${this.a}`);
+    },
+    beforeMount() {
+        console.log(`beforeMount`);
+    },
+    mounted() {
+        console.log(`mounted`);
+    },
+    beforeUpdate() {
+        console.log(`beforeUpdate`);
+    },
+    updated() {
+        console.log(`a is: ${this.a}`);
+        console.log(`updated`);
+    },
+    beforeDestroy() {
+        console.log(`beforeDestroy`);
+    },
+    destroyed() {
+        console.log(`destroyed`);
+    }
+} as ComponentOptions<Vue & typeof data>) as Vue & typeof data;
+
+vm2.a = 2;
+vm2.$destroy();
