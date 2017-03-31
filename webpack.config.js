@@ -8,7 +8,8 @@ module.exports = {
         computed: './src/computed.ts',
         'class-and-style': './src/class-and-style.ts',
         conditional: './src/conditional.ts',
-        list: './src/list.ts'
+        list: './src/list.ts',
+        events: './src/events.ts'
     },
     output: {
         path: path.resolve(__dirname, 'src'),

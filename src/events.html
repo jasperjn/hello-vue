@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example-1">
+        <button @click="counter += 1">Add 1</button>
+        <p>The button above has been clicked {{counter}} times.</p>
+    </div>
+    <div id="example-2">
+        <button @click="greet">Greet</button>
+    </div>
+    <div id="example-3">
+        <button @click="say('hi')">Say Hi</button>
+        <button @click="say('what')">Say What</button>
+    </div>
+    <form action="/" id="form1">
+        <button @click="warn('Form cannot be submitted yet.', $event)">
+            Cannot Submit
+        </button>
+        <button @click="warn('Form submitted.')">
+            Submit
+        </button>
+    </form>
+    <div id="modifiers">
+        <a href="https://www.google.com.tw/" @click.stop="doThis">google.com</a>
+        <form action="/" @submit.prevent="onSubmit">
+            <button>Submit</button>
+        </form>
+        <a href="https://www.google.com.tw/" @click.stop.prevent="doThis">google.com</a>
+        <form action="/" @submit.prevent>
+            <button>Submit</button>
+        </form>
+        <div @click.capture="doThis">
+            doThis
+            <a href="/" @click.prevent="doThat">doThat</a>
+        </div>
+        <div @click.self="doThat">
+            <a href="/" @click.prevent>doThat</a>
+        </div>
+        <a href="/" @click.once.prevent="doThis">doThis once</a>
+    </div>
+    <form id="key-modifiers" @submit.prevent>
+        <input type="text" @keyup.13="submit" placeholder="submit when enter keyup" />
+        <input type="text" @keyup.enter="submit" placeholder="submit when enter keyup" />
+        <input type="text" @keyup.tab="submit" placeholder="submit when tab keyup (not working...)" />
+        <input type="text" @keyup.delete="submit" placeholder="submit when delete keyup" />
+        <input type="text" @keyup.esc="submit" placeholder="submit when esc keyup" />
+        <input type="text" @keyup.space="submit" placeholder="submit when space keyup" />
+        <input type="text" @keyup.up="submit" placeholder="submit when up keyup" />
+        <input type="text" @keyup.down="submit" placeholder="submit when down keyup" />
+        <input type="text" @keyup.left="submit" placeholder="submit when left keyup" />
+        <input type="text" @keyup.right="submit" placeholder="submit when right keyup" />
+        <input type="text" @keyup.f1="submit" placeholder="submit when f1 keyup" />
+        <div>
+            <input type="text" @keyup.ctrl.f1="submit" placeholder="submit when f1+ctrl keyup" />
+            <input type="text" @keyup.alt.f1="submit" placeholder="submit when f1+alt keyup" />
+            <input type="text" @keyup.shift.f1="submit" placeholder="submit when shift+f1 keyup" />
+            <input type="text" @keyup.meta.f1="submit" placeholder="submit when cmd+f1 keyup" />
+        </div>
+        <div>
+            <input type="text" @click.left="submit" placeholder="submit when left mouse button clicked" />
+            <input type="text" @click.right="submit" placeholder="submit when right mouse button clicked" />
+            <input type="text" @click.middle="submit" placeholder="submit when middle mouse button clicked" />
+        </div>
+    </form>
+    <script src="./events.bundle.js"></script>
+</body>
+</html>
