@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <my-component></my-component>
+    </div>
+    <div id="local-registraction">
+        <my-component></my-component>
+    </div>
+    <div id="parsing-caveats">
+        <table>
+            <my-row></my-row>
+        </table>
+        <table>
+            <tr is="my-row"></tr>
+        </table>
+    </div>
+    <div id="data-function">
+        <my-component-2></my-component-2>
+    </div>
+    <div id="example-2">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter-2></simple-counter-2>
+        <simple-counter-2></simple-counter-2>
+    </div>
+    <div id="data-props">
+        <child message="hello!"></child>
+    </div>
+    <div id="props-cases">
+        <child my-message="hello! world"></child>
+    </div>
+    <div id="dynamic-props">
+        <input type="text" v-model="parentMsg">
+        <br />
+        <child :my-message="parentMsg"></child>
+    </div>
+    <div id="literal-vs-dynamic">
+        <child :my-message="1"></child>
+        <child my-message="1"></child>
+    </div>
+    <div id="one-way-data-flow">
+        <child :initial-counter="0" size="XL"></child>
+    </div>
+    <div id="prop-validation">
+        <!-- props validation failed-->
+        <example
+            prop-a="test"
+            prop-b="1"
+            :prop-f="0"
+            prop-g="test"></example>
+        <!-- props validation passed -->
+        <example
+            prop-c="hahaha"
+            :prop-d="999"
+            :prop-e="{message: 'world'}"
+            :prop-f="11"
+            :prop-g="customInst"></example>
+    </div>
+    <div id="counter-event-example">
+        <p>{{total}}</p>
+        <button-counter @increment="incrementTotal"></button-counter>
+        <button-counter @increment="incrementTotal"></button-counter>
+        <button-counter @click.native="doTheThing"></button-counter>
+    </div>
+    <div id="currency-input">
+        <currency-input-simple v-model="price"></currency-input-simple>
+    </div>
+    <div id="app">
+        <currency-input label="Price" v-model="price"></currency-input>
+        <currency-input label="Shipping" v-model="shipping"></currency-input>
+        <currency-input label="Handling" v-model="handling"></currency-input>
+        <currency-input label="Discount" v-model="discount"></currency-input>
+        <p>Total: ${{total}}</p>
+    </div>
+    <div id="customizing-v-model">
+        <my-checkbox v-model="foo" value="some value"></my-checkbox>
+    </div>
+    <div id="component-a" @click="tellB">Click me</div>
+    <div id="component-b">You clicked A {{counter}} times</div>
+    <script src="./components.bundle.js"></script>
+    <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
+</body>
+</html>

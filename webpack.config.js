@@ -10,7 +10,8 @@ module.exports = {
         conditional: './src/conditional.ts',
         list: './src/list.ts',
         events: './src/events.ts',
-        forms: './src/forms.ts'
+        forms: './src/forms.ts',
+        components: './src/components.ts'
     },
     output: {
         path: path.resolve(__dirname, 'src'),
