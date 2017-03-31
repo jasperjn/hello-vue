@@ -81,7 +81,23 @@
                 {{todo.text}}
             </li>
         </ul>
+        <ul v-if="!shouldRenderTodos">
+            <li v-for="(todo,index) in todos" :key="index">
+                {{todo.text}}
+            </li>
+        </ul>
     </div>
+    <ul id="filtered">
+        <li v-for="n in evenNumbers">
+            {{n}}
+        </li>
+        <li v-for="n in even(numbers)">
+            {{n}}
+        </li>
+        <li v-for="n in even([6, 8, 9])">
+            {{n}}
+        </li>
+    </ul>
     <script src="./list.bundle.js"></script>
 </body>
 
