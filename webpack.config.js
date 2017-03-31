@@ -7,7 +7,8 @@ module.exports = {
         syntax: './src/syntax.ts',
         computed: './src/computed.ts',
         'class-and-style': './src/class-and-style.ts',
-        conditional: './src/conditional.ts'
+        conditional: './src/conditional.ts',
+        list: './src/list.ts'
     },
     output: {
         path: path.resolve(__dirname, 'src'),

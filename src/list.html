@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="example-1">
+        <li v-for="item in items">
+            {{item.message}}
+        </li>
+    </ul>
+    <ul id="example-2">
+        <li v-for="(item, index) in items">
+            {{parentMessage}} - {{index}} - {{item.message}}
+        </li>
+    </ul>
+    <ul id="example-3">
+        <li v-for="(item, index) of items">
+            {{parentMessage}} - {{index}} - {{item.message}}
+        </li>
+    </ul>
+    <ul id="template-v-for">
+        <template v-for="(item, index) in items">
+            <li>
+                {{index}} - {{item.message}}
+            </li>
+            <li v-if="index !== items.length - 1">
+                ---
+            </li>
+        </template>
+    </ul>
+    <ul id="repeat-object" class="demo">
+        <li v-for="value in object">
+            {{value}}
+        </li>
+    </ul>
+    <ul id="repeat-object-key" class="demo">
+        <li v-for="(value, key) in object">
+            {{key}} : {{value}}
+        </li>
+    </ul>
+    <div id="range">
+        <span v-for="n in 10">
+            {{n}}
+        </span>
+        <span v-for="n in max">
+            {{n}}
+        </span>
+    </div>
+    <div id="todo-list-example">
+        <input
+            v-model="newTodoText"
+            @keyup.enter="addNewTodo"
+            placeholder="Add a todo" />
+        <ul>
+            <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                :key="index"
+                :title="todo.text"
+                @remove="todos.splice(index, 1)">
+            </li>
+        </ul>
+        <ul>
+            <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-if="!todo.isComplete"
+                :key="index"
+                :title="todo.text"
+                @remove="todos.splice(index, 1)">
+            </li>
+        </ul>
+        <ul v-if="shouldRenderTodos">
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ul>
+    </div>
+    <script src="./list.bundle.js"></script>
+</body>
+
+</html>
