@@ -9,7 +9,8 @@ module.exports = {
         'class-and-style': './src/class-and-style.ts',
         conditional: './src/conditional.ts',
         list: './src/list.ts',
-        events: './src/events.ts'
+        events: './src/events.ts',
+        forms: './src/forms.ts'
     },
     output: {
         path: path.resolve(__dirname, 'src'),

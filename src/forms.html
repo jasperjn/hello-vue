@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="text">
+        <input type="text" v-model="message" placeholder="edit me" />
+        <p>Message is {{message}}</p>
+    </div>
+    <div id="multiline-text">
+        <span>Multiline message is:</span>
+        <p style="white-space: pre">{{message}}</p>
+        <br />
+        <textarea type="text" v-model="message" placeholder="edit me"></textarea>
+    </div>
+    <div id="checkboxs">
+        <input type="checkbox" id="checkbox" v-model="checked" />
+        <label for="checkbox">{{checked}}</label>
+        <div>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+            <label for="mike">Mike</label>
+            <br />
+            <span>Checked names : {{checkedNames}}</span>
+        </div>
+    </div>
+    <div id="radio">
+        <input type="radio" name="" id="one" value="One" v-model="picked">
+        <label for="One">One</label>
+        <br />
+        <input type="radio" name="" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br />
+        <span>Picked: {{picked}}</span>
+    </div>
+    <div id="select">
+        <select name="" id="" v-model="selected">
+            <option value="" disabled>Please select one</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected {{selected}}</span>
+        <select name="" id="" v-model="selects" multiple>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selects {{selects}}</span>
+        <select name="" id="" v-model="selected">
+            <option value="" disabled>Please select one</option>
+            <option value="" v-for="option in options" :value="option.value">
+                {{option.text}}
+            </option>
+        </select>
+    </div>
+    <div id="value-bindings-1">
+        <input type="radio" name="" id="" v-model="picked" value="a" />{{picked}}
+        <input type="checkbox" v-model="toggle" />{{toggle}}
+        <select name="" id="" v-model="selected">
+            <option value="">Please select one</option>
+            <option value="abc">ABC</option>
+        </select>
+        {{selected}}
+    </div>
+    <div id="value-bindings-2">
+        <input
+            type="checkbox"
+            v-model="toggle"
+            :true-value="a"
+            :false-value="b">
+            {{toggle}}
+            Is Yes? {{toggle === a}}
+            Is No? {{toggle === b}}
+        <br />
+        <input type="radio" name="" id="" v-model="pick" :value="a">
+        Is Yes? {{pick === a}} Is No? {{pick === b}}
+        <select v-model="selected">
+            <option value="">Please select one</option>
+            <option :value="{number:123}">123</option>
+        </select>
+        {{selected.number || ''}}
+    </div>
+    <div id="modifiers">
+        <input v-model.lazy="msg" />{{msg}}
+        <input v-model.number="age" type="number" />{{age}} {{typeof age}}
+        <input v-model.trim="msg" />{{msg}} {{msg.length}}
+    </div>
+    <script src="./forms.bundle.js"></script>
+</body>
+
+</html>
