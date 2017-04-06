@@ -1,4 +1,5 @@
-import  Vue, { ComponentOptions, Component } from 'vue';
+import Vue, { ComponentOptions, Component } from 'vue';
+import Async from './components-async';
 
 // =============================================================================
 // Registration
@@ -430,3 +431,244 @@ new Vue({
     }
 } as ComponentOptions<B>);
 
+// =============================================================================
+// Content Distribution with Slots
+// https://vuejs.org/v2/guide/components.html#Content-Distribution-with-Slots
+// =============================================================================
+
+new Vue({
+    el: '#single-slot',
+    components: {
+        'my-component': {
+            template: `<div>
+    <h2>I'm the child title</h2>
+    <slot>This will only be displated if there is no content to be distributed.</slot>
+</div>`
+        }
+    }
+})
+
+new Vue({
+    el: '#named-slots',
+    components: {
+        'app-layout': {
+            template: `<div class="container">
+            <header>
+                <slot name="header">
+
+                </slot>
+            </header>
+            <main>
+                <slot></slot>
+            </main>
+            <footer>
+                <slot name="footer">
+
+                </slot>
+            </footer>
+        </div>`
+        }
+    }
+})
+
+// =============================================================================
+// Scoped Slots
+// https://vuejs.org/v2/guide/components.html#Scoped-Slots
+// =============================================================================
+
+new Vue({
+    el: '#scoped-slots',
+    components: {
+        child: {
+            template: `<div class="child">
+    <slot text="hello from child"></slot>
+</div>`
+        }
+    }
+})
+
+new Vue({
+    el: '#scoped-slots-2',
+    components: {
+        'my-awesome-list': {
+            template: `<ul>
+    <slot name="item" v-for="item in items" :text="item.text">
+    </slot>
+</ul>`,
+            props: ['items']
+        }
+    },
+    data: {
+        items: [
+            {text: 'Foo'},
+            {text: 'Bar'}
+        ]
+    }
+})
+
+// =============================================================================
+// Dynamic Components
+// https://vuejs.org/v2/guide/components.html#Dynamic-Components
+// =============================================================================
+
+new Vue({
+    el: '#dynamic-components',
+    components: {
+        home: {
+            template: `<div>It's home</div>`,
+            data(){
+                return {checked: false}
+            }
+        },
+        posts: {
+            template: `<div>It's posts</div>`,
+            data(){
+                return {checked: false}
+            }
+        },
+        archive: {
+            template: `<div>It's archive</div>`,
+            data(){
+                return {checked: false}
+            }
+        },
+        'dynamic-component': {
+            template: ``
+        }
+    },
+    data: {
+        currentView: 'posts'
+    }
+})
+
+new Vue({
+    el: '#dynamic-components-2',
+    data: {
+        currentView: {
+            template: `<div>
+    <p>Welcome home!</p>
+</div>`
+        }
+    }
+})
+
+new Vue({
+    el: '#dynamic-components-3',
+    components: {
+        home: {
+            template: `<div>It's home<input type="radio" v-model="checked" /></div>`,
+            data(){
+                return { checked: false };
+            }
+        },
+        posts: {
+            template: `<div>It's posts<input type="radio" v-model="checked" /></div>`,
+            data(){
+                return { checked: false };
+            }
+        },
+        archive: {
+            template: `<div>It's archive<input type="radio" v-model="checked" /></div>`,
+            data(){
+                return { checked: false };
+            }
+        },
+        'dynamic-component': {
+            template: ``
+        }
+    },
+    data: {
+        currentView: 'posts'
+    }
+})
+
+// =============================================================================
+// Misc
+// https://vuejs.org/v2/guide/components.html#Misc
+// =============================================================================
+
+interface RefComponent extends Vue {
+    $refs: {
+        profile: RefChildComponent
+    }
+}
+
+interface RefChildComponent extends Vue {
+    foo: string;
+}
+
+var parent = new Vue({
+    el: '#misc',
+    components: {
+        'user-profile': {
+            template: `<div>user profiles here.</div>`,
+            data() {
+                return {
+                    foo: 'bar'
+                };
+            }
+        },
+    }
+} as ComponentOptions<RefComponent>) as RefComponent;
+
+var child = parent.$refs.profile;
+console.log(child.foo);
+
+interface RefForComponent extends Vue {
+    $refs: {
+        profile: RefChildComponent[]
+    }
+}
+
+var miscForParent = new Vue({
+    el: '#misc-for',
+    components: {
+        'user-profile': {
+            template: `<div>user profiles here.</div>`,
+            data() {
+                return {
+                    foo: 'bar'
+                };
+            }
+        },
+    }
+} as ComponentOptions<RefForComponent>) as RefForComponent;
+
+var miscForChild = miscForParent.$refs.profile;
+console.log(miscForChild[0].foo);
+
+// =============================================================================
+// Async Components
+// https://vuejs.org/v2/guide/components.html#Async-Components
+// =============================================================================
+
+Vue.component('async-example', (resolve, reject) => {
+    setTimeout(function() {
+        resolve({
+            template: `<div>I am async</div>`
+        });
+    }, 1000);
+});
+
+Vue.component('async-import', () => Async);
+
+new Vue({
+    el: '#async-timeout',
+    components: {
+        'async-import-2': () => Async
+    }
+})
+
+// =============================================================================
+// Component Naming Conventions
+// https://vuejs.org/v2/guide/components.html#Component-Naming-Conventions
+// =============================================================================
+
+new Vue({
+    el: '#naming-convention',
+    components: {
+        'kebab-cased-component': () => Async,
+        'camelCasedComponent': () => Async,
+        'TitleCasedComponent': () => Async
+    }
+})

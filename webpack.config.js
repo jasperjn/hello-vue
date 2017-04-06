@@ -25,7 +25,8 @@ module.exports = {
     resolve: {
         alias: {
             vue: path.resolve(__dirname, './node_modules/vue/dist/vue.js')
-        }
+        },
+        extensions: ['.js', '.ts']
     },
     devServer: {
         contentBase: path.join(__dirname, 'src'),

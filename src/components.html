@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="example">
         <my-component></my-component>
@@ -51,18 +53,9 @@
     </div>
     <div id="prop-validation">
         <!-- props validation failed-->
-        <example
-            prop-a="test"
-            prop-b="1"
-            :prop-f="0"
-            prop-g="test"></example>
+        <example prop-a="test" prop-b="1" :prop-f="0" prop-g="test"></example>
         <!-- props validation passed -->
-        <example
-            prop-c="hahaha"
-            :prop-d="999"
-            :prop-e="{message: 'world'}"
-            :prop-f="11"
-            :prop-g="customInst"></example>
+        <example prop-c="hahaha" :prop-d="999" :prop-e="{message: 'world'}" :prop-f="11" :prop-g="customInst"></example>
     </div>
     <div id="counter-event-example">
         <p>{{total}}</p>
@@ -85,7 +78,112 @@
     </div>
     <div id="component-a" @click="tellB">Click me</div>
     <div id="component-b">You clicked A {{counter}} times</div>
+    <div id="single-slot">
+        <div>
+            <h1>I'm the parent title</h1>
+            <my-component>
+                <p>This is some original content</p>
+                <p>This is some more original content</p>
+            </my-component>
+            <my-component></my-component>
+        </div>
+    </div>
+    <div id="named-slots">
+        <app-layout>
+            <h1 slot="header">Here might be one page title</h1>
+            <p>A paragraph for the main content.</p>
+            <p>And another one.</p>
+            <p slot="footer">Here's some contract info</p>
+        </app-layout>
+    </div>
+    <div id="scoped-slots">
+        <div id="parent">
+            <child>
+                <template scope="props">
+                    <span>hello from parent</span>
+                    <span>{{props.text}}</span>
+                </template>
+            </child>
+        </div>
+    </div>
+    <div id="scoped-slots-2">
+        <div>
+            <my-awesome-list :items="items">
+                <template slot="item" scope="props">
+                    <li class="my-fancy-item">{{props.text}}</li>
+                </template>
+            </my-awesome-list>
+        </div>
+    </div>
+    <div id="dynamic-components">
+        <div>
+            <dynamic-component :is="currentView">
+            </dynamic-component>
+            <label>
+                <input type="radio"
+                name="dynamic-components-view"
+                value="home" @click="currentView = 'home'"> home
+            </label>
+            <label>
+                <input type="radio" name="dynamic-components-view" value="posts" @click="currentView = 'posts'"> posts
+            </label>
+            <label>
+                <input type="radio" name="dynamic-components-view" value="archive" @click="currentView = 'archive'"> archive
+            </label>
+        </div>
+    </div>
+    <div id="dynamic-components-2">
+        <dynamic-component :is="currentView">
+        </dynamic-component>
+    </div>
+    <div id="dynamic-components-3">
+        <dynamic-component :is="currentView">
+        </dynamic-component>
+        <keep-alive>
+            <dynamic-component :is="currentView">
+            </dynamic-component>
+        </keep-alive>
+        <label>
+            <input type="radio"
+                name="dynamic-components-view"
+                value="home"
+                @click="currentView = 'home'"> home
+        </label>
+        <label>
+            <input type="radio"
+                name="dynamic-components-view"
+                value="posts"
+                @click="currentView = 'posts'"> posts
+        </label>
+        <label>
+            <input type="radio"
+                name="dynamic-components-view"
+                value="archive"
+                @click="currentView = 'archive'"> archive
+        </label>
+    </div>
+    <div id="misc">
+        <div>
+            <user-profile ref="profile"></user-profile>
+        </div>
+    </div>
+    <div id="misc-for">
+        <div>
+            <user-profile v-for="n in 5" ref="profile"></user-profile>
+        </div>
+    </div>
+    <div id="async-timeout">
+        <async-example></async-example>
+        <async-import></async-import>
+        <async-import-2></async-import-2>
+    </div>
+    <div id="naming-convention">
+        <kebab-cased-component></kebab-cased-component>
+        <camel-cased-component></camel-cased-component>
+        <title-cased-component></title-cased-component>
+    </div>
     <script src="./components.bundle.js"></script>
     <script src="https://cdn.rawgit.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e/raw/98739fb8ac6779cb2da11aaa9ab6032e52f3be00/currency-validator.js"></script>
 </body>
+
 </html>

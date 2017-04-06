@@ -5,6 +5,10 @@
         "noImplicitAny": true,
         "sourceMap": false,
         "allowSyntheticDefaultImports": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "lib": [
+            "dom",
+            "es2015"
+        ]
     }
 }
