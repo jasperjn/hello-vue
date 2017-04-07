@@ -1,5 +1,6 @@
 import Vue, { ComponentOptions, Component } from 'vue';
 import Async from './components-async';
+import './tree-folder';
 
 // =============================================================================
 // Registration
@@ -669,6 +670,109 @@ new Vue({
     components: {
         'kebab-cased-component': () => Async,
         'camelCasedComponent': () => Async,
-        'TitleCasedComponent': () => Async
+        'TitleCasedComponent': () => Async,
+        strTemplate: {
+            template: '<async-example />'
+        }
     }
+})
+
+// =============================================================================
+// Recursive Components
+// https://vuejs.org/v2/guide/components.html#Recursive-Components
+// =============================================================================
+
+// Vue.component('unique-name-of-my-component', {
+//     template: '<div><unique-name-of-my-component />test</div>'
+// });
+
+// new Vue({
+//     el: '#recursive-components',
+// })
+
+// =============================================================================
+// Circular References Between Components
+// https://vuejs.org/v2/guide/components.html#Circular-References-Between-Components
+// =============================================================================
+
+// Vue.component('tree-folder', {
+//     template: `<p>
+//     <span>{{folder.name}}</span>
+//     <tree-folder-contents :children="folder.children"></tree-folder-contents>
+// </p>`,
+//     props: ['folder']
+// });
+
+// Vue.component('tree-folder-contents', {
+//     template: `<ul>
+//     <li v-for="child in children">
+//         <tree-folder v-if="child.children" :folder="child"></tree-folder>
+//         <span v-else="">{{child.name}}</span>
+//     </li>
+// </ul>`,
+//     props: ['children']
+// });
+
+new Vue({
+    el: '#circular-references',
+    data: {
+        folder: {
+            name: 'test',
+            children: [{
+                name: 'test-1',
+                children: [{
+                    name: 'test-1-1',
+                    children: [{
+                        name: 'test-1-1-1'
+                    }, {
+                        name: 'test-1-1-2'
+                    }]
+                }]
+            }, {
+                name: 'test-2'
+            }]
+        }
+    }
+})
+
+// =============================================================================
+// Inline Templates
+// https://vuejs.org/v2/guide/components.html#Inline-Templates
+// =============================================================================
+
+new Vue({
+    el: '#inline-template',
+    components: {
+        'inline-template-conponent': {
+            template: '<div>test</div>'
+        }
+    }
+})
+
+// =============================================================================
+// X-Templates
+// https://vuejs.org/v2/guide/components.html#X-Templates
+// =============================================================================
+
+new Vue({
+    el: '#x-template',
+    components: {
+        helloWorld: {
+            template: '#hello-world-template'
+        }
+    }
+})
+
+// =============================================================================
+// Cheap Static Component with v-once
+// https://vuejs.org/v2/guide/components.html#Cheap-Static-Components-with-v-once
+// =============================================================================
+
+new Vue({
+    el: '#static',
+    template: `<div v-once>
+    <h1>Terms of Service</h1>
+    ...
+</div>
+    `
 })
